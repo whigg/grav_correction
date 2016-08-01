@@ -95,3 +95,5 @@ Simply have all three files in the same directory as explained above and double-
     grav.exe
 If anything goes wrong - the terminal should try to help tell you what went wrong and how to solve it.
 
+
+Comments or questions: duan-hugo.uys@students.mq.edu.au
