@@ -35,7 +35,7 @@ This file will contain the raw gravity data along with other important positiona
 It is organised into 4 columns separated by whitespace.
 
         **SAMPLE**
-        #x   y   g_record(mGal)  time_elapsed(min)  height_to_base (metres)
+        #y   x   g_record(mGal)  time_elapsed(min)  height_to_base (metres)
         
         5	 1	 7362.725        16.5	            79.92
         25	 2	 7362.825        26.73	            79.89
