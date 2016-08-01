@@ -1,0 +1,24 @@
+## these are comments
+
+# name of data file
+data_file = data.txt
+
+# in degrees
+latitude = 45
+
+# in kg/m^3
+avg_density = 2400
+
+# base 1 reading mGal
+base1 = 7362.64
+
+# base 2 reading mGal
+base2 = 7362.63
+
+# base height
+base_height = 80
+
+# total time of survey - minutes
+total_time = 136
+
+
