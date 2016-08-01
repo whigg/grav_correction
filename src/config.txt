@@ -7,7 +7,7 @@ data_file = data.txt
 output_file = corrected_values.txt
 
 # in degrees
-latitude = 45
+latitude = 33.7
 
 # in kg/m^3
 avg_density = 2400
@@ -22,6 +22,6 @@ base2 = 7362.63
 base_height = 80
 
 # total time of survey - minutes
-total_time = 136
+total_time = 137.2833
 
 

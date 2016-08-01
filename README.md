@@ -11,23 +11,25 @@
 
 # Geophysics - Gravity Data Reduction #
 
-This is a nifty program that inputs a simple data file and
-spits out the corrected gravity measurements along with
+This is a program that inputs a simple data file and
+spits out the corrected gravity measurements appended to 
 original data.
 
 Gravity Corrections Included:
-    * Drift Correction
-    * Latitude Correction
-    * Free-air Correction
-    * Bouguer Correction
+
+* Drift Correction
+* Latitude Correction
+* Free-air Correction
+* Bouguer Correction
 
 You will need 3 files for this program to work, and they must all be in the same directory as the main program file
 called 'grav'
 
 Files Needed:
-    * grav
-    * config.txt
-    * data.txt
+
+* grav (grav.exe - windows)
+* config.txt
+* data.txt
 
 
 ### DATA.TXT ###
@@ -35,13 +37,13 @@ This file will contain the raw gravity data along with other important positiona
 It is organised into 4 columns separated by whitespace.
 
         **SAMPLE**
-        #y   x   g_record(mGal)  time_elapsed(min)  height_to_base (metres)
+        #x   y   g_record(mGal)  time_elapsed(min)  height_to_base (metres)
         
-        5	 1	 7362.725        16.5	            79.92
-        25	 2	 7362.825        26.73	            79.89
-        30	 3	 7362.83         34.1               79.92
-        35	 4	 7362.87         44.53	            79.92
-        40	 5	 7362.865        48.867	            79.96
+        1	 -5	     7362.725        16.5	            79.92
+        2	 -25	 7362.825        26.73	            79.89
+        3	 -30	 7362.83         34.1               79.92
+        4	 -35	 7362.87         44.53	            79.92
+        5	 -40	 7362.865        48.867	            79.96
 
 
 --> the file containing the data can be renamed to anything. In the configuration file - more below - you have the option
@@ -58,7 +60,7 @@ It is organised into 4 columns separated by whitespace.
     output_file = grav_corr.txt
     
     # in degrees
-    latitude = 45
+    latitude = -33.773
     
     # in kg/m^3
     avg_density = 2400
