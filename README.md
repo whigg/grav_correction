@@ -65,10 +65,10 @@ It is organised into 4 columns separated by whitespace.
     # in kg/m^3
     avg_density = 2400
     
-    # base 1 reading mGal
+    # base 1 - mGal
     base1 = 7362.64
     
-    # base 2 reading mGal
+    # base 2 - mGal
     base2 = 7362.63
     
     # base height - metres
