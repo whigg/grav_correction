@@ -16,18 +16,18 @@ spits out the corrected gravity measurements along with
 original data.
 
 Gravity Corrections Included:
-    - Drift Correction
-    - Latitude Correction
-    - Free-air Correction
-    - Bouguer Correction
+    * Drift Correction
+    * Latitude Correction
+    * Free-air Correction
+    * Bouguer Correction
 
 You will need 3 files for this program to work, and they must all be in the same directory as the main program file
 called 'grav'
 
 Files Needed:
-    - grav
-    - config.txt
-    - data.txt
+    * grav
+    * config.txt
+    * data.txt
 
 
 ### DATA.TXT ###
