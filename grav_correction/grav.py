@@ -72,7 +72,7 @@ def main(data_f):
     print "-> Attaching All Data."
     final = np.stack((x, y, raw_g, time, rel_h, final), axis=-1)
 
-    print "-> Saving Corrected Grav Data to: grav_corr.txt"
+    print "-> Saving Corrected Grav Data to: %s" % output_file
     np.savetxt(output_file, final, newline='\n', fmt='%.6f', header="x\t\t\ty\t\traw_g\t\ttime\t\trel_h\t\tGB")
 
 
