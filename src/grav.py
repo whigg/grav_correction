@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 class ReadConfig(object):
 
@@ -12,8 +13,13 @@ class ReadConfig(object):
         self.file_name = file_name
 
         # open file and read contents to store in variables
-        with open(file_name) as f:
-            content = f.readlines()
+        try:
+            with open(file_name) as f:
+                content = f.readlines()
+        except:
+            raw_input("Could not find '%s' make sure it is in the same directory as this executable" % file_name)
+
+
         line_num = 1
         for line in content:
             if not line.startswith('#') and not line.isspace():
@@ -48,36 +54,16 @@ class ReadConfig(object):
         else:
             return True
 
-    def raiseGeneralError(self, *args):
-        exit(*args)
-
-def deg2rad(deg):
-    return ((deg * np.pi) / 180)
-
-
-def contains(character, string):
-    equals = 0
-    for char in string:
-        if char == character:
-            equals += 1
-    if equals == 0:
-        return False
-    else:
-        return True
-
-def readHeader(file_name):
-    with open(file_name, 'r') as f:
-        return f.readline().rstrip()
-
-
 def main(data_f):
     if data_f == '':
-        exit("data_f is blank - report bug.")
+        raw_input("data_f is None - report bug")
+        raise StandardError()
     try:
         print '-> Loading %s' % data_f
         data = np.loadtxt(data_f)
     except IOError:
-        exit("Data file couldn't")
+        raw_input("Data file could not be found: %s" % data_f)
+        raise IOError()
 
     options = config.options_from_config
     base2 = float(options['base2'])
@@ -88,8 +74,9 @@ def main(data_f):
     base_height = float(options['base_height'])
     output_file = str(options['output_file'])
 
-    y     = data[:,0]
-    x     = data[:,1]
+    ## Numpy Array of Data file
+    x     = data[:,0]
+    y     = data[:,1]
 
     print '-> Extracting Raw Gravity Data.'
     raw_g = data[:,2]
@@ -99,31 +86,37 @@ def main(data_f):
 
     print '-> Extracting Relevant Height Data'
     rel_h = data[:,4]
-    lat = deg2rad(lat)
-    ### Do calculations
 
+    lat = math.radians(lat)
+    ### Do calculations
     # observed g
-    #g_o = raw_g - (((time * (config.base2 - config.base1)) / config.total_time) + config.base1)
-    g_o = raw_g - (((time * (base2 - base1)) / total_time) + base1)
+    g_o = raw_g - base1 - (time * ((base2 - base1) /total_time))
 
     # Latitude Correction
-    g_l = (0.000812 * np.sin(lat *2)) * y
+    g_l = (0.000812 * np.sin(lat * 2)) * y
 
     #Free Air Correction
-    #g_fa = 0.3086 * (rel_h - config.base_height)
     g_fa = 0.3086 * (rel_h - base_height)
 
     # Bouguer Correction
-    g_b = (0.0000419 * (rel_h - base_height *avg_density))
+    g_b = 0.0000419 * (rel_h - base_height) *avg_density
 
-    final = g_o - g_l + g_fa - g_b
+    final = g_o + g_fa - g_b + g_l
 
     ###
     print "-> Attaching All Data."
-    final = np.stack((x, y, raw_g, time, rel_h, final), axis=-1)
+    stacked = np.stack((x, y, raw_g, time, rel_h, final), axis=-1)
 
     print "-> Saving Corrected Grav Data to: %s" % output_file
-    np.savetxt(output_file, final, newline='\n', fmt='%.6f', header="x\t\t\ty\t\traw_g\t\ttime\t\trel_h\t\tGB")
+    #print (time * ((base2 - base1) / total_time))[21]
+    #print raw_g[21]
+    #print g_o[21]
+    #print g_l[21]
+    #print g_fa[21]
+    #print g_b[21]
+    #print final[21]
+
+    np.savetxt(output_file, stacked, newline='\n', fmt='%.6f', header="x\t\t\ty\t\traw_g\t\ttime\t\trel_h\t\tGB")
 
 
 print "-> Reading Configuration File."
