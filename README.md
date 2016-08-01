@@ -50,8 +50,12 @@ It is organised into 4 columns separated by whitespace.
     ########## CONFIG.TXT ############
     --------------------------------------------------
     ## these are comments
+    
     # name of data file - can be renamed to anything you want
     data_file = data.txt
+    
+    # name of output file - change name of output file or leave alone
+    output_file = grav_corr.txt
     
     # in degrees
     latitude = 45

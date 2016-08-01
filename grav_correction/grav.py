@@ -36,6 +36,7 @@ def main(data_f):
     lat = float(options['latitude'])
     avg_density = float(options['avg_density'])
     base_height = float(options['base_height'])
+    output_file = str(options['output_file'])
 
     y     = data[:,0]
     x     = data[:,1]
@@ -46,7 +47,7 @@ def main(data_f):
     print '-> Extracting Time Elapsed Data.'
     time = data[:,3]
 
-    print '-> Extracting Relevent Height Data'
+    print '-> Extracting Relevant Height Data'
     rel_h = data[:,4]
     lat = deg2rad(lat)
     ### Do calculations
@@ -72,16 +73,18 @@ def main(data_f):
     final = np.stack((x, y, raw_g, time, rel_h, final), axis=-1)
 
     print "-> Saving Corrected Grav Data to: grav_corr.txt"
-    np.savetxt('grav_corr.txt', final, newline='\n', fmt='%.6f', header="x\t\t\ty\t\traw_g\t\ttime\t\trel_h\t\tGB")
+    np.savetxt(output_file, final, newline='\n', fmt='%.6f', header="x\t\t\ty\t\traw_g\t\ttime\t\trel_h\t\tGB")
 
 
 print "-> Reading Configuration File."
 config = ConfigUtils.ReadConfig('config.txt',
                                 'data_file',
+                                'output_file',
                                 'latitude',
                                 'avg_density',
                                 'base1',
                                 'base2',
                                 'base_height',
                                 'total_time')
+
 main(config.options_from_config['data_file'])
