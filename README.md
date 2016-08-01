@@ -81,7 +81,8 @@ It is organised into 4 columns separated by whitespace.
 ### HOW TO USE ###
 #####<u>OS and Linux</u> ####
 
-Simply have all three files in the same directory as explained above and execute 'grav' in the terminal window like:
+Simply have all three files in the same directory as explained above and execute 'grav' located in the OSX folder
+in the terminal window like:
     ./grav
 If anything goes wrong - the terminal should try to help tell you what went wrong and how to solve it.
 
